@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Customer:</strong>
+  <%= @proposal.customer %>
+</p>
+
+<p>
+  <strong>Protection type:</strong>
+  <%= @proposal.protection_type %>
+</p>
+
+<p>
+  <strong>Premium value:</strong>
+  <%= @proposal.premium_value %>
+</p>
+
+<p>
+  <strong>Term:</strong>
+  <%= @proposal.term %>
+</p>
+
+<%= link_to 'Edit', edit_proposal_path(@proposal) %> |
+<%= link_to 'Back', proposals_path %>
