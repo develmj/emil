@@ -1,31 +1,40 @@
-<h1>Listing proposals</h1>
-
-<table>
+<%- model_class = Proposal -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => Proposal %></h1>
+</div>
+<table class="table table-striped">
   <thead>
     <tr>
-      <th>Customer</th>
-      <th>Protection type</th>
-      <th>Premium value</th>
-      <th>Term</th>
-      <th colspan="3"></th>
+      <th>ID</th>
+      <th><%= model_class.human_attribute_name(:protection_type) %></th>
+      <th><%= model_class.human_attribute_name(:premium_value) %></th>
+      <th><%= model_class.human_attribute_name(:term) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
-
   <tbody>
     <% @proposals.each do |proposal| %>
       <tr>
-        <td><%= proposal.customer %></td>
+        <td><%= proposal.id %></td>
         <td><%= proposal.protection_type %></td>
         <td><%= proposal.premium_value %></td>
         <td><%= proposal.term %></td>
-        <td><%= link_to 'Show', proposal %></td>
-        <td><%= link_to 'Edit', edit_proposal_path(proposal) %></td>
-        <td><%= link_to 'Destroy', proposal, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%=l proposal.created_at, format: :long %></td>
+        <td>
+          <%= link_to proposal_path(proposal), :class => 'btn btn-xs', :title => "#{ t('.show', :default => t('helpers.links.show')) }" do %>
+            <%= glyph 'info-sign' %>
+            <%= glyph 'pencil' %>
+          <%- end -%>
+          <%= link_to proposal_path(proposal), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-xs', :title => "#{ t('.destroy', :default => t('helpers.links.destroy')) }" do %>
+            <%= glyph 'remove' %>
+          <%- end -%>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Proposal', new_proposal_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_proposal_path,
+            :class => 'btn btn-primary' %>
