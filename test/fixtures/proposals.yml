@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  customer_id: 
+  protection_type: false
+  premium_value: 1.5
+  term: 1
+
+two:
+  customer_id: 
+  protection_type: false
+  premium_value: 1.5
+  term: 1
